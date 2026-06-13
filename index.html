@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Candid Corporate Creative</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Cormorant+SC:wght@400;500;600&family=Dancing+Script:wght@500;600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --taupe:        #7d6b5d;
+      --taupe-dark:   #5e5048;
+      --taupe-deep:   #3f3530;
+      --taupe-mid:    #9c8878;
+      --taupe-light:  #b5a495;
+      --linen:        #e8ddd0;
+      --linen-pale:   #f3ede4;
+      --cream:        #faf6f0;
+      --warm-white:   #fffcf8;
+      --script:  'Dancing Script', cursive;
+      --serif:   'Cormorant Garamond', Georgia, serif;
+      --serif-sc:'Cormorant SC', Georgia, serif;
+      --sans:    'Jost', sans-serif;
+      --pad: clamp(18px, 5vw, 68px);
+      --max: 1160px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--taupe-deep);
+      font-family: var(--sans);
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; max-width: 100%; }
+    ul { list-style: none; }
+
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+
+    /* TOP BAR */
+    .topbar {
+      background: var(--taupe-deep);
+      color: rgba(232,221,208,0.7);
+      text-align: center;
+      padding: 9px var(--pad);
+      font-family: var(--sans);
+      font-size: 11px; font-weight: 400;
+      letter-spacing: 0.16em;
+    }
+    .topbar a { color: var(--linen); text-decoration: underline; text-underline-offset: 3px; }
+
+    /* NAV */
+    header {
+      background: var(--warm-white);
+      border-bottom: 1px solid rgba(125,107,93,0.12);
+      position: sticky; top: 0; z-index: 300;
+    }
+    .nav-wrapper {
+      max-width: var(--max); margin: 0 auto;
+      padding: 0 var(--pad);
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      height: 84px; gap: 12px;
+    }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links.right { justify-content: flex-end; }
+    .nav-links a {
+      font-family: var(--sans); font-size: 11px; font-weight: 500;
+      letter-spacing: 0.17em; text-transform: uppercase;
+      color: var(--taupe); position: relative; padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -1px; left: 0; right: 0;
+      height: 1px; background: var(--taupe);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.25s;
+    }
+    .nav-links a:hover { color: var(--taupe-deep); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-logo { text-align: center; line-height: 1; }
+    .nav-logo-the { display: block; font-family: var(--serif-sc); font-size: 12px; font-weight: 500; letter-spacing: 0.4em; color: var(--taupe-mid); margin-bottom: -4px; position: relative; z-index: 1; }
+    .nav-logo-candid { display: block; font-family: var(--script); font-size: 28px; font-weight: 400; color: var(--taupe-light); line-height: 1; position: relative; z-index: 2; margin-bottom: -8px; }
+    .nav-logo-corporate { display: block; font-family: var(--serif-sc); font-size: 16px; font-weight: 600; letter-spacing: 0.12em; color: var(--taupe-deep); line-height: 1.1; position: relative; z-index: 1; }
+    .nav-logo-creative { display: block; font-family: var(--script); font-size: 22px; font-weight: 400; color: var(--taupe-light); line-height: 1; position: relative; z-index: 2; margin-top: -6px; }
+    .nav-icon { background: none; border: none; cursor: pointer; color: var(--taupe); padding: 4px; display: flex; align-items: center; transition: color 0.2s; }
+    .nav-icon:hover { color: var(--taupe-deep); }
+
+    /* HERO */
+    .hero {
+      background: var(--taupe);
+      min-height: 90vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 8% 92%, rgba(63,53,48,0.5) 0%, transparent 50%),
+        radial-gradient(ellipse at 88% 12%, rgba(232,221,208,0.06) 0%, transparent 45%);
+      pointer-events: none; z-index: 1;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: clamp(60px, 8vw, 104px) clamp(28px, 5vw, 72px);
+      position: relative; z-index: 2;
+    }
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 14px; margin-bottom: 28px;
+      opacity: 0; animation: fadeUp 0.7s ease 0.2s forwards;
+    }
+    .eyebrow-rule { width: 32px; height: 1px; background: var(--linen); opacity: 0.4; }
+    .eyebrow-text { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(232,221,208,0.65); }
+    .hero-title { opacity: 0; animation: fadeUp 0.8s ease 0.35s forwards; }
+    .hero-title-the { display: block; font-family: var(--serif-sc); font-size: clamp(13px, 1.1vw, 16px); font-weight: 500; letter-spacing: 0.45em; color: rgba(232,221,208,0.55); margin-bottom: -6px; position: relative; z-index: 1; }
+    .hero-title-candid { display: block; font-family: var(--script); font-size: clamp(64px, 8.5vw, 110px); font-weight: 400; color: var(--linen); line-height: 1; position: relative; z-index: 2; margin-bottom: -18px; }
+    .hero-title-corporate { display: block; font-family: var(--serif-sc); font-size: clamp(32px, 4.5vw, 66px); font-weight: 600; letter-spacing: 0.08em; color: #fff; line-height: 1; position: relative; z-index: 1; }
+    .hero-title-creative { display: block; font-family: var(--script); font-size: clamp(50px, 6.5vw, 88px); font-weight: 400; color: var(--linen); line-height: 1; position: relative; z-index: 2; margin-top: -14px; }
+    .hero-desc {
+      margin-top: 30px; font-size: 15px; font-weight: 300;
+      color: rgba(232,221,208,0.7); max-width: 400px; line-height: 1.85;
+      opacity: 0; animation: fadeUp 0.8s ease 0.5s forwards;
+    }
+    .hero-actions {
+      margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap;
+      opacity: 0; animation: fadeUp 0.8s ease 0.62s forwards;
+    }
+    .btn { font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; padding: 13px 28px; display: inline-block; transition: all 0.25s; cursor: pointer; border: none; }
+    .btn-light { background: var(--linen); color: var(--taupe-deep); }
+    .btn-light:hover { background: #fff; }
+    .btn-ghost-light { background: transparent; color: var(--linen); border: 1px solid rgba(232,221,208,0.4); }
+    .btn-ghost-light:hover { border-color: var(--linen); background: rgba(232,221,208,0.08); }
+    .btn-dark { background: var(--taupe-deep); color: var(--linen); }
+    .btn-dark:hover { background: var(--taupe); }
+
+    /* Hero right — featured card */
+    .hero-right {
+      position: relative; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      padding: 48px 48px 48px 20px;
+    }
+    .featured-card {
+      background: var(--warm-white);
+      width: 100%; max-width: 400px;
+      box-shadow: 0 28px 72px rgba(63,53,48,0.38);
+      opacity: 0; animation: fadeIn 1s ease 0.55s forwards;
+      position: relative; overflow: hidden;
+    }
+    .featured-card-img {
+      height: 240px;
+      background: linear-gradient(145deg, #5e5048 0%, #3f3530 55%, #7d6b5d 100%);
+      display: flex; align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
+    }
+    .featured-card-img-inner {
+      width: 100%; height: 100%;
+      background-image: radial-gradient(ellipse at 35% 45%, rgba(181,164,149,0.18) 0%, transparent 60%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .card-img-script { font-family: var(--script); font-size: 58px; color: rgba(232,221,208,0.18); user-select: none; }
+    .featured-badge {
+      position: absolute; top: 18px; left: 18px;
+      background: var(--taupe); color: var(--linen);
+      font-family: var(--sans); font-size: 9px; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase; padding: 5px 12px;
+    }
+    .featured-card-body { padding: 28px 28px 32px; }
+    .card-category { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--taupe); margin-bottom: 10px; }
+    .card-title { font-family: var(--serif); font-size: 22px; font-weight: 400; font-style: italic; line-height: 1.3; color: var(--taupe-deep); margin-bottom: 12px; }
+    .card-excerpt { font-size: 13.5px; font-weight: 300; color: var(--taupe-mid); line-height: 1.72; margin-bottom: 20px; }
+    .card-meta { display: flex; align-items: center; gap: 14px; font-size: 11px; color: var(--taupe-light); margin-bottom: 18px; }
+    .card-meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--taupe-light); }
+    .card-read-link { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--taupe); border-bottom: 1px solid var(--taupe-light); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s; }
+    .card-read-link:hover { color: var(--taupe-deep); border-color: var(--taupe-deep); }
+
+    /* CATEGORY STRIP */
+    .cat-strip { background: var(--taupe-deep); }
+    .cat-strip-inner { max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); display: flex; justify-content: center; flex-wrap: wrap; }
+    .cat-pill { font-family: var(--sans); font-size: 10.5px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(232,221,208,0.55); padding: 17px 26px; border-bottom: 2px solid transparent; transition: all 0.2s; cursor: pointer; }
+    .cat-pill:hover, .cat-pill.active { color: var(--linen); border-bottom-color: var(--taupe-light); }
+
+    /* ABOUT STRIP */
+    .about-strip { background: var(--linen-pale); padding: clamp(56px, 7vw, 88px) var(--pad); }
+    .about-strip-inner { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: auto 1fr; gap: clamp(36px, 5vw, 80px); align-items: center; }
+    .about-avatar { width: clamp(140px, 18vw, 200px); aspect-ratio: 1; border-radius: 50%; background: var(--taupe); flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+    .about-avatar::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(181,164,149,0.3) 0%, rgba(63,53,48,0.4) 100%); }
+    .about-avatar-initials { font-family: var(--script); font-size: clamp(48px, 6vw, 68px); color: rgba(232,221,208,0.55); position: relative; z-index: 1; }
+    .about-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--taupe); margin-bottom: 10px; }
+    .about-title { font-family: var(--serif); font-size: clamp(26px, 3vw, 38px); font-weight: 400; line-height: 1.2; color: var(--taupe-deep); margin-bottom: 14px; }
+    .about-title em { font-style: italic; color: var(--taupe); }
+    .about-body { font-size: 15.5px; font-weight: 300; color: var(--taupe-mid); max-width: 540px; line-height: 1.85; margin-bottom: 24px; }
+
+    /* BLOG SECTION */
+    .blog-section { padding: clamp(64px, 8vw, 100px) var(--pad); }
+    .blog-inner { max-width: var(--max); margin: 0 auto; }
+    .section-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: clamp(32px, 4vw, 48px); gap: 20px; }
+    .section-label { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: var(--taupe); margin-bottom: 7px; }
+    .section-title { font-family: var(--serif); font-size: clamp(26px, 3vw, 38px); font-weight: 400; line-height: 1.15; color: var(--taupe-deep); }
+    .section-title em { font-style: italic; }
+    .see-all { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--taupe); border-bottom: 1px solid var(--taupe-light); padding-bottom: 1px; white-space: nowrap; flex-shrink: 0; transition: color 0.2s; }
+    .see-all:hover { color: var(--taupe-deep); border-color: var(--taupe-deep); }
+
+    /* Featured large post */
+    .blog-featured { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2px; margin-bottom: clamp(24px, 3vw, 36px); background: var(--linen); }
+    .blog-featured-img { min-height: 400px; background: linear-gradient(145deg, var(--taupe-dark) 0%, var(--taupe-deep) 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .blog-featured-img-decor { font-family: var(--script); font-size: 110px; color: rgba(232,221,208,0.08); user-select: none; position: absolute; bottom: -10px; right: -20px; }
+    .blog-featured-body { background: var(--warm-white); padding: clamp(32px, 4vw, 52px); display: flex; flex-direction: column; justify-content: center; }
+    .post-cat { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--taupe); margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+    .post-cat::before { content: ''; width: 22px; height: 1px; background: var(--taupe-light); }
+    .post-title-lg { font-family: var(--serif); font-size: clamp(22px, 2.5vw, 32px); font-weight: 400; font-style: italic; line-height: 1.25; color: var(--taupe-deep); margin-bottom: 14px; }
+    .post-excerpt { font-size: 14.5px; font-weight: 300; color: var(--taupe-mid); line-height: 1.8; margin-bottom: 26px; }
+    .post-meta { font-size: 11px; color: var(--taupe-light); margin-bottom: 22px; display: flex; gap: 14px; align-items: center; }
+    .post-meta-sep { opacity: 0.4; }
+
+    /* Post grid */
+    .post-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(14px, 2vw, 26px); }
+    .post-card { background: var(--warm-white); overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+    .post-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(125,107,93,0.13); }
+    .post-card-img { height: 175px; overflow: hidden; }
+    .post-card-img-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform 0.5s; }
+    .post-card:hover .post-card-img-inner { transform: scale(1.04); }
+    .post-card-img-text { font-family: var(--script); font-size: 44px; color: rgba(232,221,208,0.22); user-select: none; }
+    .img-career   { background: linear-gradient(135deg, #4a3f38, #2e2824); }
+    .img-lifestyle{ background: linear-gradient(135deg, #7d6b5d, #5e5048); }
+    .img-finance  { background: linear-gradient(135deg, #3f3530, #6b5c50); }
+    .img-fashion  { background: linear-gradient(135deg, #9c8878, #7d6b5d); }
+    .post-card-body { padding: 22px 22px 26px; }
+    .post-card-cat { font-family: var(--sans); font-size: 9.5px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--taupe); margin-bottom: 8px; }
+    .post-card-title { font-family: var(--serif); font-size: 18px; font-weight: 400; font-style: italic; line-height: 1.3; color: var(--taupe-deep); margin-bottom: 9px; }
+    .post-card-snippet { font-size: 13px; font-weight: 300; color: var(--taupe-mid); line-height: 1.7; margin-bottom: 14px; }
+    .post-card-footer { display: flex; align-items: center; justify-content: space-between; font-size: 11px; color: var(--taupe-light); border-top: 1px solid rgba(125,107,93,0.1); padding-top: 12px; }
+    .read-more { font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; font-size: 10px; color: var(--taupe); transition: color 0.2s; }
+    .read-more:hover { color: var(--taupe-deep); }
+
+    /* SHOP */
+    .shop-section { background: var(--taupe); padding: clamp(64px, 8vw, 100px) var(--pad); }
+    .shop-inner { max-width: var(--max); margin: 0 auto; }
+    .shop-header { text-align: center; margin-bottom: clamp(36px, 5vw, 56px); }
+    .shop-header .section-label { color: rgba(232,221,208,0.65); }
+    .shop-header .section-title { color: var(--warm-white); margin-bottom: 10px; }
+    .shop-header p { font-size: 14.5px; font-weight: 300; color: rgba(232,221,208,0.58); max-width: 480px; margin: 0 auto; }
+    .shop-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(10px, 1.5vw, 18px); }
+    .shop-card { background: var(--warm-white); overflow: hidden; transition: transform 0.3s; }
+    .shop-card:hover { transform: translateY(-4px); }
+    .shop-card-img { height: 195px; background: var(--linen-pale); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .shop-card-img-inner { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; transition: transform 0.4s; }
+    .shop-card:hover .shop-card-img-inner { transform: scale(1.04); }
+    .shop-img-icon { font-size: 34px; opacity: 0.4; }
+    .shop-img-lbl { font-family: var(--script); font-size: 17px; color: rgba(125,107,93,0.38); }
+    .shop-card-body { padding: 16px 18px 20px; }
+    .shop-card-tag { font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; color: var(--taupe); margin-bottom: 5px; }
+    .shop-card-name { font-family: var(--serif); font-size: 16px; font-weight: 400; font-style: italic; color: var(--taupe-deep); margin-bottom: 10px; line-height: 1.3; }
+    .shop-card-footer { display: flex; align-items: center; justify-content: space-between; }
+    .shop-price { font-family: var(--sans); font-size: 13px; font-weight: 500; color: var(--taupe-dark); }
+    .shop-btn { font-family: var(--sans); font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; background: var(--taupe); color: var(--linen); padding: 6px 13px; transition: background 0.2s; border: none; cursor: pointer; }
+    .shop-btn:hover { background: var(--taupe-dark); }
+    .shop-note { text-align: center; margin-top: 26px; font-size: 11px; font-weight: 300; color: rgba(232,221,208,0.42); letter-spacing: 0.04em; }
+
+    /* TOPICS */
+    .topics { background: var(--linen-pale); padding: clamp(56px, 7vw, 84px) var(--pad); }
+    .topics-inner { max-width: var(--max); margin: 0 auto; }
+    .topics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: clamp(30px, 4vw, 48px); }
+    .topic-tile { background: var(--warm-white); padding: clamp(28px, 3.5vw, 44px) clamp(18px, 2.5vw, 30px); text-align: center; transition: background 0.3s, transform 0.3s; cursor: pointer; }
+    .topic-tile:hover { background: var(--taupe); transform: translateY(-2px); }
+    .topic-icon { font-size: 26px; margin-bottom: 13px; color: var(--taupe); transition: color 0.3s; }
+    .topic-name { font-family: var(--serif); font-size: 19px; font-weight: 400; font-style: italic; color: var(--taupe-deep); margin-bottom: 5px; line-height: 1.25; transition: color 0.3s; }
+    .topic-count { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--taupe-light); transition: color 0.3s; }
+    .topic-tile:hover .topic-icon, .topic-tile:hover .topic-name, .topic-tile:hover .topic-count { color: var(--linen); }
+
+    /* FAVORITES STRIP */
+    .favorites-strip { padding: clamp(56px, 6vw, 80px) var(--pad); background: var(--cream); }
+    .favorites-inner { max-width: var(--max); margin: 0 auto; }
+    .fav-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(10px, 1.5vw, 18px); margin-top: clamp(28px, 3.5vw, 44px); }
+    .fav-item { text-align: center; }
+    .fav-img { aspect-ratio: 1; background: var(--linen); margin-bottom: 11px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .fav-img-inner { font-size: 26px; color: rgba(125,107,93,0.32); transition: transform 0.3s; }
+    .fav-item:hover .fav-img-inner { transform: scale(1.1); }
+    .fav-name { font-family: var(--serif); font-size: 14px; font-weight: 400; font-style: italic; color: var(--taupe-deep); line-height: 1.3; margin-bottom: 3px; }
+    .fav-brand { font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--taupe-light); }
+
+    /* NEWSLETTER */
+    .newsletter { background: var(--taupe-deep); padding: clamp(64px, 8vw, 96px) var(--pad); text-align: center; }
+    .newsletter-inner { max-width: 540px; margin: 0 auto; }
+    .newsletter-script { font-family: var(--script); font-size: clamp(36px, 5vw, 56px); font-weight: 600; color: var(--linen); line-height: 1; display: block; margin-bottom: 10px; }
+    .newsletter-serif { font-family: var(--serif-sc); font-size: clamp(13px, 1.4vw, 16px); font-weight: 500; letter-spacing: 0.16em; color: rgba(232,221,208,0.55); display: block; margin-bottom: 12px; }
+    .newsletter p { font-size: 14px; font-weight: 300; color: rgba(232,221,208,0.52); line-height: 1.8; margin-bottom: 28px; }
+    .newsletter-form { display: flex; max-width: 420px; margin: 0 auto; }
+    .newsletter-input { flex: 1; padding: 14px 18px; background: rgba(232,221,208,0.08); border: 1px solid rgba(232,221,208,0.2); border-right: none; color: var(--linen); font-family: var(--sans); font-size: 14px; font-weight: 300; outline: none; transition: border-color 0.25s; }
+    .newsletter-input::placeholder { color: rgba(232,221,208,0.28); }
+    .newsletter-input:focus { border-color: rgba(232,221,208,0.42); }
+    .newsletter-submit { padding: 14px 22px; background: var(--taupe); color: var(--linen); font-family: var(--sans); font-size: 11px; font-weight: 600; letter-spacing: 0.17em; text-transform: uppercase; border: none; cursor: pointer; transition: background 0.25s; white-space: nowrap; }
+    .newsletter-submit:hover { background: var(--taupe-mid); }
+    .newsletter-fine { margin-top: 13px; font-size: 10.5px; font-weight: 300; color: rgba(232,221,208,0.28); letter-spacing: 0.04em; }
+
+    /* FOOTER */
+    footer { background: var(--taupe-deep); padding: clamp(48px, 6vw, 72px) var(--pad) 28px; }
+    .footer-inner { max-width: var(--max); margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: clamp(28px, 4vw, 52px); padding-bottom: clamp(36px, 4vw, 52px); border-bottom: 1px solid rgba(232,221,208,0.1); }
+    .footer-brand-the { display: block; font-family: var(--serif-sc); font-size: 11px; letter-spacing: 0.4em; color: rgba(232,221,208,0.38); margin-bottom: -4px; position: relative; z-index: 1; }
+    .footer-brand-main { display: block; font-family: var(--script); font-size: 40px; font-weight: 400; color: var(--linen); line-height: 1; position: relative; z-index: 2; margin-bottom: -10px; }
+    .footer-brand-corporate { display: block; font-family: var(--serif-sc); font-size: 15px; font-weight: 600; letter-spacing: 0.1em; color: #fff; position: relative; z-index: 1; }
+    .footer-brand-creative { display: block; font-family: var(--script); font-size: 30px; font-weight: 400; color: var(--taupe-light); line-height: 1; position: relative; z-index: 2; margin-top: -6px; }
+    .footer-tagline { margin-top: 14px; font-size: 13px; font-weight: 300; color: rgba(232,221,208,0.42); line-height: 1.7; max-width: 230px; }
+    .footer-social { display: flex; gap: 12px; margin-top: 18px; }
+    .social-link { width: 32px; height: 32px; border: 1px solid rgba(232,221,208,0.18); display: flex; align-items: center; justify-content: center; font-size: 13px; color: rgba(232,221,208,0.45); transition: all 0.2s; }
+    .social-link:hover { border-color: var(--taupe-light); color: var(--linen); }
+    .footer-col h4 { font-family: var(--sans); font-size: 10px; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(232,221,208,0.45); margin-bottom: 16px; }
+    .footer-col ul { display: flex; flex-direction: column; gap: 9px; }
+    .footer-col li a { font-size: 13.5px; font-weight: 300; color: rgba(232,221,208,0.52); transition: color 0.2s; }
+    .footer-col li a:hover { color: var(--linen); }
+    .footer-bottom { padding-top: 22px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+    .footer-copy { font-size: 11px; font-weight: 300; color: rgba(232,221,208,0.26); letter-spacing: 0.07em; }
+    .footer-legal { display: flex; gap: 18px; }
+    .footer-legal a { font-size: 11px; font-weight: 300; color: rgba(232,221,208,0.26); transition: color 0.2s; }
+    .footer-legal a:hover { color: rgba(232,221,208,0.58); }
+    .footer-disc { font-size: 10.5px; font-weight: 300; color: rgba(232,221,208,0.2); max-width: var(--max); margin: 16px auto 0; padding-top: 16px; border-top: 1px solid rgba(232,221,208,0.06); line-height: 1.65; }
+
+    @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:none; } }
+    @keyframes fadeIn  { from { opacity:0; } to { opacity:1; } }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .shop-grid { grid-template-columns: repeat(2, 1fr); }
+      .fav-grid  { grid-template-columns: repeat(3, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { padding: 0 var(--pad) 56px; justify-content: flex-start; }
+      .featured-card { max-width: 100%; }
+      .about-strip-inner { grid-template-columns: 1fr; text-align: center; }
+      .about-avatar { margin: 0 auto; }
+      .blog-featured { grid-template-columns: 1fr; }
+      .blog-featured-img { min-height: 220px; }
+      .post-grid { grid-template-columns: 1fr 1fr; }
+      .topics-grid { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 580px) {
+      .post-grid { grid-template-columns: 1fr; }
+      .shop-grid { grid-template-columns: 1fr 1fr; }
+      .fav-grid  { grid-template-columns: repeat(2, 1fr); }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-input { border-right: 1px solid rgba(232,221,208,0.2); }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="topbar">
+    New post: <a href="#">"5 Things Nobody Tells You About Getting Promoted" →</a>
+  </div>
+
+  <header>
+    <div class="nav-wrapper">
+      <nav class="nav-links">
+        <a href="#blog">Blog</a>
+        <a href="#topics">Topics</a>
+        <a href="#shop">Shop</a>
+      </nav>
+      <a href="#" class="nav-logo">
+        <span class="nav-logo-the">The</span>
+        <span class="nav-logo-candid">candid</span>
+        <span class="nav-logo-corporate">Corporate</span>
+        <span class="nav-logo-creative">creative</span>
+      </a>
+      <nav class="nav-links right">
+        <a href="#about">About</a>
+        <a href="#newsletter">Newsletter</a>
+        <button class="nav-icon" aria-label="Search">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <span class="eyebrow-rule"></span>
+        <span class="eyebrow-text">Personal Blog &amp; Creative Space</span>
+      </div>
+      <div class="hero-title">
+        <span class="hero-title-the">The</span>
+        <span class="hero-title-candid">candid</span>
+        <span class="hero-title-corporate">Corporate</span>
+        <span class="hero-title-creative">creative</span>
+      </div>
+      <p class="hero-desc">Real talk about corporate life, building wealth, finding your creative spark, and living well — without the filter.</p>
+      <div class="hero-actions">
+        <a href="#blog" class="btn btn-light">Read the Blog</a>
+        <a href="#about" class="btn btn-ghost-light">My Story</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="featured-card">
+        <div class="featured-card-img">
+          <div class="featured-card-img-inner"><span class="card-img-script">candid</span></div>
+          <div class="featured-badge">Featured Post</div>
+        </div>
+        <div class="featured-card-body">
+          <p class="card-category">Career &amp; Corporate</p>
+          <h2 class="card-title">The Promotion They Never Told You Was Possible</h2>
+          <p class="card-excerpt">Six months of strategic moves, uncomfortable conversations, and one very candid performance review — here's what actually worked.</p>
+          <div class="card-meta">
+            <span>March 10, 2026</span><span class="card-meta-dot"></span><span>6 min read</span>
+          </div>
+          <a href="#" class="card-read-link">Read Post →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORY STRIP -->
+  <div class="cat-strip">
+    <div class="cat-strip-inner">
+      <span class="cat-pill active">All</span>
+      <span class="cat-pill">Career</span>
+      <span class="cat-pill">Lifestyle</span>
+      <span class="cat-pill">Finance</span>
+      <span class="cat-pill">Fashion</span>
+      <span class="cat-pill">Favorites</span>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section class="about-strip" id="about">
+    <div class="about-strip-inner">
+      <div class="about-avatar reveal"><span class="about-avatar-initials">ccc</span></div>
+      <div class="reveal">
+        <p class="about-label">Hey, I'm glad you're here</p>
+        <h2 class="about-title">Corporate by day,<br/><em>creative by nature</em></h2>
+        <p class="about-body">I'm a full-time corporate professional who refuses to leave my creativity at the office door. This blog is my honest, unfiltered space to write about navigating the 9-to-5, building financial freedom on the side, and designing a life that actually feels like mine.</p>
+        <a href="#" class="btn btn-dark">More About Me</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section class="blog-section" id="blog">
+    <div class="blog-inner">
+      <div class="section-header reveal">
+        <div>
+          <p class="section-label">Latest Posts</p>
+          <h2 class="section-title">Fresh from <em>the blog</em></h2>
+        </div>
+        <a href="#" class="see-all">View All Posts →</a>
+      </div>
+      <div class="blog-featured reveal">
+        <div class="blog-featured-img"><span class="blog-featured-img-decor">corporate</span></div>
+        <div class="blog-featured-body">
+          <p class="post-cat">Finance &amp; Side Income</p>
+          <h3 class="post-title-lg">How I Built a $1,200/Month Side Income While Working Full-Time</h3>
+          <p class="post-excerpt">No, I didn't quit my job. No, I didn't hustle every weekend. Here's the slow, boring, actually sustainable way I grew my income — and what I'd do differently.</p>
+          <p class="post-meta"><span>March 5, 2026</span><span class="post-meta-sep">·</span><span>8 min read</span></p>
+          <a href="#" class="btn btn-dark">Read Full Post</a>
+        </div>
+      </div>
+      <div class="post-grid">
+        <div class="post-card reveal">
+          <div class="post-card-img"><div class="post-card-img-inner img-career"><span class="post-card-img-text">work</span></div></div>
+          <div class="post-card-body">
+            <p class="post-card-cat">Career</p>
+            <h3 class="post-card-title">Asking for a Raise When You're Terrified</h3>
+            <p class="post-card-snippet">The exact script I used — and the mindset shift that made it possible.</p>
+            <div class="post-card-footer"><span>Feb 28</span><a href="#" class="read-more">Read →</a></div>
+          </div>
+        </div>
+        <div class="post-card reveal">
+          <div class="post-card-img"><div class="post-card-img-inner img-lifestyle"><span class="post-card-img-text">life</span></div></div>
+          <div class="post-card-body">
+            <p class="post-card-cat">Lifestyle</p>
+            <h3 class="post-card-title">My Morning Routine That Actually Stuck</h3>
+            <p class="post-card-snippet">After years of failed 5am attempts, here's what finally worked for a night owl.</p>
+            <div class="post-card-footer"><span>Feb 21</span><a href="#" class="read-more">Read →</a></div>
+          </div>
+        </div>
+        <div class="post-card reveal">
+          <div class="post-card-img"><div class="post-card-img-inner img-fashion"><span class="post-card-img-text">style</span></div></div>
+          <div class="post-card-body">
+            <p class="post-card-cat">Fashion</p>
+            <h3 class="post-card-title">Building a Work Wardrobe on a Real Budget</h3>
+            <p class="post-card-snippet">My capsule wardrobe formula for looking polished without overspending.</p>
+            <div class="post-card-footer"><span>Feb 14</span><a href="#" class="read-more">Read →</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOP / AFFILIATE -->
+  <section class="shop-section" id="shop">
+    <div class="shop-inner">
+      <div class="shop-header reveal">
+        <p class="section-label">Shop My Favorites</p>
+        <h2 class="section-title">Things I <em style="color:var(--linen)">actually</em> use &amp; love</h2>
+        <p>Honest recommendations — I only share things I've tried myself. Some links are affiliate, which means I may earn a small commission at no cost to you.</p>
+      </div>
+      <div class="shop-grid reveal">
+        <div class="shop-card">
+          <div class="shop-card-img"><div class="shop-card-img-inner"><span class="shop-img-icon">📓</span><span class="shop-img-lbl">Planner</span></div></div>
+          <div class="shop-card-body">
+            <p class="shop-card-tag">Productivity</p>
+            <p class="shop-card-name">The Planner I've Used for 3 Years Straight</p>
+            <div class="shop-card-footer"><span class="shop-price">$34</span><button class="shop-btn">Shop Now</button></div>
+          </div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-card-img"><div class="shop-card-img-inner"><span class="shop-img-icon">👜</span><span class="shop-img-lbl">Bag</span></div></div>
+          <div class="shop-card-body">
+            <p class="shop-card-tag">Fashion</p>
+            <p class="shop-card-name">My Everyday Work Tote (Under $80)</p>
+            <div class="shop-card-footer"><span class="shop-price">$78</span><button class="shop-btn">Shop Now</button></div>
+          </div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-card-img"><div class="shop-card-img-inner"><span class="shop-img-icon">📚</span><span class="shop-img-lbl">Books</span></div></div>
+          <div class="shop-card-body">
+            <p class="shop-card-tag">Career</p>
+            <p class="shop-card-name">Books That Changed How I Work</p>
+            <div class="shop-card-footer"><span class="shop-price">From $16</span><button class="shop-btn">Shop Now</button></div>
+          </div>
+        </div>
+        <div class="shop-card">
+          <div class="shop-card-img"><div class="shop-card-img-inner"><span class="shop-img-icon">💄</span><span class="shop-img-lbl">Beauty</span></div></div>
+          <div class="shop-card-body">
+            <p class="shop-card-tag">Beauty</p>
+            <p class="shop-card-name">My 5-Minute Office-Ready Routine</p>
+            <div class="shop-card-footer"><span class="shop-price">From $22</span><button class="shop-btn">Shop Now</button></div>
+          </div>
+        </div>
+      </div>
+      <p class="shop-note">* This page contains affiliate links. I only recommend products I personally use and love.</p>
+    </div>
+  </section>
+
+  <!-- TOPICS -->
+  <section class="topics" id="topics">
+    <div class="topics-inner">
+      <div class="section-header reveal">
+        <div>
+          <p class="section-label">Browse by Topic</p>
+          <h2 class="section-title">Find what <em>speaks to you</em></h2>
+        </div>
+      </div>
+      <div class="topics-grid">
+        <div class="topic-tile reveal"><div class="topic-icon">💼</div><p class="topic-name">Career &amp; Corporate</p><p class="topic-count">24 Posts</p></div>
+        <div class="topic-tile reveal"><div class="topic-icon">✨</div><p class="topic-name">Lifestyle &amp; Wellness</p><p class="topic-count">18 Posts</p></div>
+        <div class="topic-tile reveal"><div class="topic-icon">💰</div><p class="topic-name">Finance &amp; Side Income</p><p class="topic-count">15 Posts</p></div>
+        <div class="topic-tile reveal"><div class="topic-icon">👗</div><p class="topic-name">Fashion &amp; Beauty</p><p class="topic-count">12 Posts</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAVORITES STRIP -->
+  <section class="favorites-strip">
+    <div class="favorites-inner">
+      <div class="section-header reveal">
+        <div><p class="section-label">Currently Loving</p><h2 class="section-title">This month's <em>picks</em></h2></div>
+        <a href="#shop" class="see-all">Full Shop →</a>
+      </div>
+      <div class="fav-grid">
+        <div class="fav-item reveal"><div class="fav-img"><div class="fav-img-inner">☕</div></div><p class="fav-name">Reusable Coffee Cup</p><p class="fav-brand">Stanley</p></div>
+        <div class="fav-item reveal"><div class="fav-img"><div class="fav-img-inner">🎧</div></div><p class="fav-name">Noise-Cancelling Headphones</p><p class="fav-brand">Sony</p></div>
+        <div class="fav-item reveal"><div class="fav-img"><div class="fav-img-inner">🧴</div></div><p class="fav-name">SPF Moisturiser</p><p class="fav-brand">CeraVe</p></div>
+        <div class="fav-item reveal"><div class="fav-img"><div class="fav-img-inner">👟</div></div><p class="fav-name">Walk-to-Work Sneakers</p><p class="fav-brand">New Balance</p></div>
+        <div class="fav-item reveal"><div class="fav-img"><div class="fav-img-inner">💻</div></div><p class="fav-name">Laptop Stand</p><p class="fav-brand">Twelve South</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="newsletter" id="newsletter">
+    <div class="newsletter-inner reveal">
+      <span class="newsletter-serif">Join the Community</span>
+      <span class="newsletter-script">Stay candid.</span>
+      <p>Weekly-ish thoughts on career moves, money wins, and everything in between — straight to your inbox. No fluff, ever.</p>
+      <div class="newsletter-form">
+        <input class="newsletter-input" type="email" placeholder="your@email.com" />
+        <button class="newsletter-submit">Subscribe</button>
+      </div>
+      <p class="newsletter-fine">No spam. Unsubscribe anytime. I respect your inbox.</p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div>
+          <span class="footer-brand-the">The</span>
+          <span class="footer-brand-main">candid</span>
+          <span class="footer-brand-corporate">Corporate</span>
+          <span class="footer-brand-creative">creative</span>
+          <p class="footer-tagline">Real talk about corporate life, creativity, and building something of your own.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Instagram">
+              <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="Pinterest">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.87 6.39 9.29-.09-.78-.17-1.98.04-2.83.18-.77 1.22-5.17 1.22-5.17s-.31-.62-.31-1.54c0-1.45.84-2.53 1.88-2.53.89 0 1.32.67 1.32 1.47 0 .9-.57 2.24-.87 3.48-.25 1.04.52 1.88 1.54 1.88 1.85 0 3.27-1.95 3.27-4.76 0-2.49-1.79-4.23-4.35-4.23-2.96 0-4.7 2.22-4.7 4.51 0 .89.34 1.85.77 2.37.08.1.09.19.07.29-.08.32-.25 1.04-.28 1.19-.04.19-.14.23-.32.14-1.25-.58-2.03-2.42-2.03-3.89 0-3.15 2.29-6.05 6.61-6.05 3.47 0 6.16 2.47 6.16 5.77 0 3.44-2.17 6.21-5.18 6.21-1.01 0-1.96-.53-2.29-1.14l-.62 2.33c-.23.87-.84 1.96-1.25 2.62.94.29 1.94.45 2.97.45 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+            </a>
+            <a href="#" class="social-link" aria-label="TikTok">
+              <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.78a4.85 4.85 0 01-1.01-.09z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Blog</h4>
+          <ul>
+            <li><a href="#">Career &amp; Corporate</a></li>
+            <li><a href="#">Lifestyle &amp; Wellness</a></li>
+            <li><a href="#">Finance &amp; Side Income</a></li>
+            <li><a href="#">Fashion &amp; Beauty</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#">About Me</a></li>
+            <li><a href="#">Shop Favorites</a></li>
+            <li><a href="#">Newsletter</a></li>
+            <li><a href="#">Resources</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Pinterest</a></li>
+            <li><a href="#">TikTok</a></li>
+            <li><a href="#">Work With Me</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-copy">© 2026 The Candid Corporate Creative. All rights reserved.</p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Disclosure</a>
+          <a href="#">Terms</a>
+        </div>
+      </div>
+      <p class="footer-disc">Affiliate Disclosure: This site contains affiliate links, meaning I may earn a small commission if you purchase through my links — at no extra cost to you. I only recommend products I personally use and genuinely love. Thank you for supporting this blog!</p>
+    </div>
+  </footer>
+
+  <script>
+    const els = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('in'), i * 75);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    els.forEach(el => io.observe(el));
+
+    document.querySelectorAll('.cat-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('.cat-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
